@@ -14,17 +14,18 @@ import ssl
 config = {
     'mqtt': {
         'broker': os.environ.get('MQTT_HOST'),
-        'port': 8883,
-        'ssl': 1,
+        'port': 1883,
+        'ssl': 0,
         'prefix': 'media',
         'user': os.environ.get('MQTT_USER'),
         'password': os.environ.get('MQTT_PASSWORD'),
     },
     'cec': {
         'enabled': 1,
-        'id': 1,
-        'port': 'Linux',
+        #'id': 1,
+        'port': 'RPI',
         'devices': '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15',
+        'name': 'CEC Bridge',
     },
     'ir': {
         'enabled': 0,
