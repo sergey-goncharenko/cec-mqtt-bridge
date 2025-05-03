@@ -257,6 +257,7 @@ try:
                 raise Exception("Could not connect to cec adapter")
         except Exception as e:
             print("ERROR: Could not initialise CEC:", str(e))
+            print(f"  CEC: {config['cec']['port']}")
             exit(1)
 
     ### Setup IR ###
