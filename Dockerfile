@@ -4,7 +4,7 @@
 
 FROM alpine:3.21
 
-LABEL maintainer="Nick Gregory <docker@openenterprise.co.uk>"
+LABEL maintainer="Sergey G <s.gonch@hotmail.com>"
 
 ARG LIBCEC_VERSION="4.0.7"
 ARG LIBCEC_SHA256="bcd92c376993a5721d346edcc09eb17289451f9156b1d1d113c9663c2046315a"
@@ -60,7 +60,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && cd /tmp \
     && echo "==> Installing cec-bridge" \
     && mkdir /app \
-    && git clone https://github.com/NixM0nk3y/cec-mqtt-bridge.git \
+    && git clone https://github.com/sergey-goncharenko/cec-mqtt-bridge.git \
     && cd /tmp/cec-mqtt-bridge \
     && pip3 install -r requirements.txt \
     && cp bridge.py /app \
