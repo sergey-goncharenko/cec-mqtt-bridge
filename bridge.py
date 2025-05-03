@@ -276,9 +276,27 @@ try:
     mqtt_client = mqtt.Client("cec-ir-mqtt")
     mqtt_client.on_connect = mqtt_on_connect
     mqtt_client.on_message = mqtt_on_message
-    mqtt_client.tls_set(
+    if int(config['mqtt'].get('ssl', 1)) == 1:  # SSL enabled
+        print("Connecting with SSL/TLS...")
+        mqtt_client.tls_set(
             ca_certs='/etc/ssl/cert.pem',
-    )
+        )
+    else:
+        print("Connecting without SSL/TLS...")
+
+    print("MQTT Connection Parameters:")
+    print(f"  Broker: {config['mqtt']['broker']}")
+    print(f"  Port: {config['mqtt']['port']}")
+    print(f"  User: {config['mqtt'].get('user', 'N/A')}")
+    print(f"  SSL Enabled: {config['mqtt'].get('ssl', 1)}")
+    print(f"  CA Cert Path: {config['mqtt'].get('ca_cert', '/etc/ssl/cert.pem')}")
+    print()
+    print("Environment Variables:")
+    print(f"  MQTT_HOST: {os.getenv('MQTT_HOST')}")
+    print(f"  MQTT_PORT: {os.getenv('MQTT_PORT')}")
+    print(f"  MQTT_USER: {os.getenv('MQTT_USER')}")
+    print(f"  MQTT_SSL: {os.getenv('MQTT_SSL')}")
+    print()
 
     mqtt_client.connect(config['mqtt']['broker'], int(config['mqtt']['port']), 60)
     mqtt_client.loop_start()
