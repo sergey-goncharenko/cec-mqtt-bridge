@@ -283,6 +283,7 @@ try:
         )
     else:
         print("Connecting without SSL/TLS...")
+        mqtt_client.username_pw_set(config['mqtt']['user'], config['mqtt']['password'])
 
     print("MQTT Connection Parameters:")
     print(f"  Broker: {config['mqtt']['broker']}")
